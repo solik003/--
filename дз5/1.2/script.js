@@ -8,6 +8,7 @@ updateUI();
 switchButton.addEventListener('click', function() {
     isOn = !isOn;
     //localStorage.setItem('isOn', isOn.toString());
+    //test comment
     localStorage.setItem('isOn', JSON.stringify(isOn));
     updateUI();
 });
