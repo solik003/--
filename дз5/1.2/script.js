@@ -2,17 +2,19 @@ const switchButton = document.getElementById('switchButton');
 const messageDiv = document.getElementById('message');
 //let isOn = localStorage.getItem('isOn') === 'true';
 let isOn = JSON.parse(localStorage.getItem('isOn')) || true;
+let storedDate = localStorage.getItem('lastDate');
 
-updateUI();
+//updateUI();
 
 switchButton.addEventListener('click', function() {
     isOn = !isOn;
-    //localStorage.setItem('isOn', isOn.toString());
     localStorage.setItem('isOn', JSON.stringify(isOn));
+    
     updateUI();
 });
   
 function updateUI() {
+    const lastDate = storedDate ? new Date(storedDate) : new Date(0); 
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleString('uk-UA');
 
