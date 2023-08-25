@@ -1,15 +1,18 @@
 const switchButton = document.getElementById('switchButton');
 const messageDiv = document.getElementById('message');
-//let isOn = localStorage.getItem('isOn') === 'true';
 let isOn = JSON.parse(localStorage.getItem('isOn')) || true;
 let storedDate = localStorage.getItem('lastDate');
-
-//updateUI();
+updateUI();
 
 switchButton.addEventListener('click', function() {
     isOn = !isOn;
-    localStorage.setItem('isOn', JSON.stringify(isOn));
-    
+
+    if (isOn) {
+      storedDate = new Date().toISOString();
+    } else {
+      storedDate = null;
+    }
+    localStorage.setItem('lastDate', storedDate);
     updateUI();
 });
   
@@ -30,3 +33,4 @@ function updateUI() {
       messageDiv.style.display = 'block';
     }
 }
+
