@@ -12,6 +12,7 @@ switchButton.addEventListener('click', function() {
     } else {
       storedDate = null;
     }
+    localStorage.setItem('isOn', JSON.stringify(isOn));
     localStorage.setItem('lastDate', storedDate);
     updateUI();
 });
