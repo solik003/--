@@ -1,17 +1,28 @@
 const switchButton = document.getElementById('switchButton');
 const messageDiv = document.getElementById('message');
-let isOn = JSON.parse(localStorage.getItem('isOn')) || true;
+let isOn = JSON.parse(localStorage.getItem('isOn')) || false;
 let storedDate = localStorage.getItem('lastDate');
-updateUI();
+
+// Зберігаємо поточний колір фону сторінки
+const currentBackgroundColor = document.body.style.backgroundColor;
+localStorage.setItem('pageColor', currentBackgroundColor);
+
+window.addEventListener('DOMContentLoaded', function() {
+  // Отримання даних зі збереженого локального сховища
+  isOn = JSON.parse(localStorage.getItem('isOn')) || false;
+  storedDate = localStorage.getItem('lastDate');
+  
+  // Оновлення інтерфейсу на підставі відновлених даних
+  updateUI();
+});
+
+//updateUI();
 
 switchButton.addEventListener('click', function() {
     isOn = !isOn;
 
-    if (isOn) {
-      storedDate = new Date().toISOString();
-    } else {
-      storedDate = null;
-    }
+    
+    storedDate = new Date().toISOString();
     localStorage.setItem('isOn', JSON.stringify(isOn));
     localStorage.setItem('lastDate', storedDate);
     updateUI();
@@ -19,8 +30,9 @@ switchButton.addEventListener('click', function() {
   
 function updateUI() {
     const lastDate = storedDate ? new Date(storedDate) : new Date(0); 
-    const currentDate = new Date();
+    const currentDate = storedDate ?  new Date(storedDate): new Date(0);
     const formattedDate = currentDate.toLocaleString('uk-UA');
+    //зберігати стан кнопки 
 
     if (isOn) {
       document.body.style.backgroundColor = '#333'; 
@@ -33,5 +45,7 @@ function updateUI() {
       messageDiv.textContent = `Last turn on: ${formattedDate}`;
       messageDiv.style.display = 'block';
     }
+    
 }
+
 
