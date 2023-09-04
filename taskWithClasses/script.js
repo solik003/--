@@ -87,7 +87,7 @@ class Reptiles extends Vertebrates{
         this._isVenomous = isVenomous;
         this.isAquatic = isAquatic;
     }
-    isColdBlooded() {
+    GetisColdBlooded() {
         return this.isColdBlooded;
     }
     sleep(hours) {
@@ -113,6 +113,7 @@ console.log(vertebrate);
 console.log(vertebrate.getAge());
 const reptile = new Reptiles("Nara",23,false,'vertebrate',true,false,true);
 console.log(reptile);
+console.log(reptile.GetisColdBlooded());
 
 
 // class Bird extends Animal{
