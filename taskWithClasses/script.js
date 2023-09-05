@@ -1,28 +1,30 @@
 "use strict";
 
 class Animal{
-    constructor(name, age, isAlive) {
-        this._name = name;
+    #name;
+    constructor(age, isAlive) {
         this.age = age;
         this.isAlive = isAlive;
+        this.#name = 'Jecki';
     }
     getName() {
-        return this._name;
+        return this.#name;
     }
 
     getAge() {
         return this.age;
     }
 
-    isAlive() {
+    AnimalisAlive() {
         return this.isAlive;
     }
 }
 class Vertebrates extends Animal{
+    #habitat;
      constructor(name, age, isAlive, backboneType,number,hasFins) {
         super(name, age, isAlive);
         this.backboneType = backboneType;
-        this._habitat = '';
+        this.#habitat = 'Water';
         this.number = number;
         this.hasFins = hasFins;
      }
@@ -33,17 +35,18 @@ class Vertebrates extends Animal{
         return this.hasFins;
     }
     getHabitat() {
-        return this._habitat;
+        return this.#habitat;
     }
     setHabitat(newHabitat) {
-        this._habitat = newHabitat;
+        this.#habitat = newHabitat;
     }
 }
 class Invertebrates extends Animal{
-    constructor(name, age, isAlive, habitat, locomotionMethod, reproductiveSystem) {
+    #locomotionMethod;
+    constructor(name, age, isAlive, habitat, reproductiveSystem) {
         super(name, age, isAlive);
         this.habitat = habitat;
-        this._locomotionMethod = locomotionMethod;
+        this.#locomotionMethod = 'run';
         this.reproductiveSystem = reproductiveSystem;
     }
     getHabitat() {
@@ -51,7 +54,10 @@ class Invertebrates extends Animal{
     }
 
     getLocomotionMethod() {
-        return this._locomotionMethod;
+        return this.#locomotionMethod;
+    }
+    setLocomotionMethod(newlocomotionMethod) {
+        this.#locomotionMethod = newlocomotionMethod;
     }
 
     getReproductiveStrategy() {
@@ -60,11 +66,12 @@ class Invertebrates extends Animal{
 
 }
 class Fish extends Vertebrates{
-    constructor(name, age, isAlive, backboneType,number,location,color,fishLength ) {
+    #fishLength;
+    constructor(name, age, isAlive, backboneType,number,location,color) {
         super(name, age, isAlive, backboneType,number);
         this.location = location;
         this.color = color;
-        this._fishLength = fishLength;
+        this.#fishLength = 13;
         
     }
     hasFeathers() {
@@ -74,17 +81,22 @@ class Fish extends Vertebrates{
         return this.color;
     }
     getLength() {
-        return this._fishLength;
+        return this.#fishLength;
+    }
+    setLength(newfishLength)
+    {
+        this.#fishLength = newfishLength;
     }
     getBackboneType() {
         return this.backboneType;
     }
 }
 class Reptiles extends Vertebrates{
-     constructor(name, age, isAlive, backboneType, isColdBlooded,isVenomous,isAquatic) {
+    #isVenomous;
+     constructor(name, age, isAlive, backboneType, isColdBlooded,isAquatic) {
         super(name, age, isAlive, backboneType);
         this.isColdBlooded = isColdBlooded;
-        this._isVenomous = isVenomous;
+        this.#isVenomous = true;
         this.isAquatic = isAquatic;
     }
     GetisColdBlooded() {
@@ -94,7 +106,7 @@ class Reptiles extends Vertebrates{
         return `${this.getName()} sleeps for ${hours} hours.`;
     }
     isVenomous() {
-        return this._isVenomous;
+        return this.#isVenomous;
     }
     getIsAquatic() {
         return this.isAquatic;
@@ -111,9 +123,9 @@ console.log(fish1.hasFeathers());
 const vertebrate = new Vertebrates("Human", 30, true, "Spinal column",4,true);
 console.log(vertebrate);
 console.log(vertebrate.getAge());
-const reptile = new Reptiles("Nara",23,false,'vertebrate',true,false,true);
+const reptile = new Reptiles("Nara",23,false,'vertebrate',true,false);
 console.log(reptile);
 console.log(reptile.GetisColdBlooded());
-
-
-
+const anim = new Animal(5, true);
+console.log(anim);
+console.log(anim.getName());
